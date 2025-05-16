@@ -8,15 +8,9 @@
 
   onMount(() => {
     const unsubscribe = memoData.subscribe(value => {
-      // valueはオブジェクトの配列で与えられる。
-      /*
-      TODO： ページごとに対応したオブジェクトにアクセスできるようにする。
-      例： "テスト1"をクリックするとテスト1の詳細な中身が、
-      "テスト2"をクリックするとテスト2の詳細な中身が表示される。
-      */
-      title = value[0].title;
-      body = value[0].body;
-      references = value[0].references;
+      title = value.title;
+      body = value.body;
+      references = value.references;
     });
     return () => {
       unsubscribe();
