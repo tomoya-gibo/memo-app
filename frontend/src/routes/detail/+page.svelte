@@ -24,5 +24,6 @@
   <p>{body}</p>
   <h2>参考文献：</h2>
   <p>{references}</p>
+  <a href="/home"><button>メモ一覧に戻る</button></a>
   <a href="/edit"><button>編集する</button></a>
 </div>

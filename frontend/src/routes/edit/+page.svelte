@@ -1,6 +1,7 @@
 <script>
   import { memoData } from "$lib/stores/dataStore";
   import InputScreen from "$lib/components/InputScreen.svelte";
+  import { goto } from "$app/navigation";
 
   /*
   入力フォームの初期値を取得するため、
@@ -11,7 +12,9 @@
   let references = $memoData.references;
   
   function updateData(inputData) {
-    memoData.set(inputData)
+    memoData.set(inputData);
+
+    goto("/detail");
 
     // デバッグ用
     console.log(inputData.title, inputData.body, inputData.references);
