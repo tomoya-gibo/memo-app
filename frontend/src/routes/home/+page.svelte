@@ -18,15 +18,13 @@
   onMount(() => {
     console.log("onMountの先頭でのdatas:", datas);
     
-    //console.log(Object.keys(datas).length);
+    console.log("datasのプロパティの個数(onMount直後):", Object.keys(datas).length);
 
     // datasが空の場合はサンプルデータを初期値として適用。
     if (Object.keys(datas).length === 0) {
       console.log("ifブロックの中");
       
       memoData.set(sampleDatas);
-      //datas = sampleDatas;
-      //console.log(datas);      
     }
     
     const unsubscribe = memoData.subscribe((value) => {
@@ -40,7 +38,7 @@
     });
 
     console.log("datasのプロパティの個数:", Object.keys(datas).length);
-    console.log(datas);
+    console.log("subscribe後のdatas:", datas);
     
     return () => {
       unsubscribe();
