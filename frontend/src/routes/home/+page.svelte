@@ -1,5 +1,6 @@
 <script>
   import { memoData } from "$lib/stores/dataStore";
+  import { onMount } from "svelte";
 
   // サンプルデータ
   const sampleDatas = {
@@ -10,15 +11,35 @@
 
   let datas = {};
 
-  memoData.subscribe((value) => {
-    datas = value;
+  /*if (Object.keys(datas).length === 0) {
+    memoData.set(sampleDatas);
+    console.log(datas);
+    
+    //datas = sampleDatas;
+  };*/
+
+  onMount(() => {
+    console.log(Object.keys(datas).length);
+    
+    // datasが空の場合はサンプルデータを初期値として適用。
+    if (datas.constructor === Object && Object.keys(datas).length === 0) {
+      memoData.set(sampleDatas);
+      //datas = sampleDatas;
+    };
+
+    const unsubscribe = memoData.subscribe((value) => {
+      datas = value;
+    });
+    return () => {
+      unsubscribe();
+      // デバッグ用
+      console.log(datas);
+      console.log(typeof datas);
+    }
   });
 
-  memoData.set(sampleDatas);
-  
-  //サンプルデータがdatasに代入されているかデバッグ
   console.log(datas);
-  console.log(typeof datas);
+  
   
 </script>
 

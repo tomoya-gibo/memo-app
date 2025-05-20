@@ -1,4 +1,5 @@
 <script>
+  import { goto } from "$app/navigation";
   import { memoData } from "$lib/stores/dataStore";
   import { onMount } from "svelte";
   
@@ -16,6 +17,10 @@
       unsubscribe();
     }
   });
+
+  function goToHome() {
+    goto("/home");
+  }
   
 </script>
 
@@ -24,6 +29,6 @@
   <p>{body}</p>
   <h2>参考文献：</h2>
   <p>{references}</p>
-  <a href="/home"><button>メモ一覧に戻る</button></a>
+  <button on:click={goToHome}>メモ一覧に戻る</button>
   <a href="/edit"><button>編集する</button></a>
 </div>
