@@ -16,10 +16,10 @@
   let datas = {};
 
   if (datas.constructor === Object && Object.keys(datas).length === 0) {
-    //memoData.set(sampleDatas);
-    datas = sampleDatas;
+    memoData.set(sampleDatas)
+    //datas = sampleDatas;
     console.log(datas);
-  };
+  }
 
   onMount(() => {
     console.log("onMountの先頭でのdatas:", datas);
