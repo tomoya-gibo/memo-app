@@ -9,6 +9,10 @@
       references: "テスト1の参考文献"
     };
 
+  let title = "";
+  let body = "";
+  let references = "";
+  
   let datas = {};
 
   /*if (Object.keys(datas).length === 0) {
@@ -19,7 +23,7 @@
   };*/
 
   onMount(() => {
-    console.log("onMountの直後のdatas:", datas);
+    console.log("onMountの先頭でのdatas:", datas);
     
     console.log(Object.keys(datas).length);
     
@@ -27,13 +31,14 @@
     if (datas.constructor === Object && Object.keys(datas).length === 0) {
       memoData.set(sampleDatas);
       //datas = sampleDatas;
-    } else {
-      unsubscribe();
     }
 
     const unsubscribe = memoData.subscribe((value) => {
-      datas = value;
+      title = value.title;
+      body = value.body;
+      references = value.references;
     });
+
     return () => {
       unsubscribe();
       // デバッグ用
@@ -41,7 +46,7 @@
       console.log(typeof datas);
     }
   });
-
+  console.log("subscribeされた各データの値:", title, body, references);
   console.log("onMount後のdatas:", datas);
   
   
