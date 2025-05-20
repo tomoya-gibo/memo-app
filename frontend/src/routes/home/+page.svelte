@@ -13,13 +13,13 @@
   let body = "";
   let references = "";
   */
-  let datas = {};
+  let datas = sampleDatas;
 
-  if (datas.constructor === Object && Object.keys(datas).length === 0) {
+  /*if (datas.constructor === Object && Object.keys(datas).length === 0) {
     memoData.set(sampleDatas)
     //datas = sampleDatas;
     console.log(datas);
-  }
+  }*/
 
   onMount(() => {
     console.log("onMountの先頭でのdatas:", datas);
@@ -37,6 +37,7 @@
     /*if (Object.keys(datas).length === 0) {
       memoData.set(sampleDatas);
       //datas = sampleDatas;
+      console.log(datas);      
     }*/
 
     return () => {
