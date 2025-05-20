@@ -19,13 +19,17 @@
   };*/
 
   onMount(() => {
+    console.log("onMountの直後のdatas:", datas);
+    
     console.log(Object.keys(datas).length);
     
     // datasが空の場合はサンプルデータを初期値として適用。
     if (datas.constructor === Object && Object.keys(datas).length === 0) {
       memoData.set(sampleDatas);
       //datas = sampleDatas;
-    };
+    } else {
+      unsubscribe();
+    }
 
     const unsubscribe = memoData.subscribe((value) => {
       datas = value;
@@ -38,7 +42,7 @@
     }
   });
 
-  console.log(datas);
+  console.log("onMount後のdatas:", datas);
   
   
 </script>
