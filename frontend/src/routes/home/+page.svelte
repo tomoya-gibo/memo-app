@@ -15,12 +15,6 @@
   */
   let datas = {};
 
-  /*if (datas.constructor === Object && Object.keys(datas).length === 0) {
-    memoData.set(sampleDatas)
-    //datas = sampleDatas;
-    console.log(datas);
-  }*/
-
   onMount(() => {
     console.log("onMountの先頭でのdatas:", datas);
     
@@ -47,15 +41,6 @@
     console.log("datasのプロパティの個数:", Object.keys(datas).length);
     console.log(datas);
     
-    // datasが空の場合はサンプルデータを初期値として適用。
-    /*if (Object.keys(datas).length === 0) {
-      console.log("test");
-      
-      memoData.set(sampleDatas);
-      //datas = sampleDatas;
-      //console.log(datas);      
-    }*/
-
     return () => {
       unsubscribe();
       // デバッグ用
@@ -63,7 +48,7 @@
       console.log(typeof datas);
     }
   });
-  //console.log("subscribeされた各データの値:", title, body, references);
+
   console.log("onMount後のdatas:", datas);
   
   
