@@ -13,7 +13,7 @@
   let body = "";
   let references = "";
   */
-  let datas = sampleDatas;
+  let datas = {};
 
   /*if (datas.constructor === Object && Object.keys(datas).length === 0) {
     memoData.set(sampleDatas)
@@ -24,20 +24,36 @@
   onMount(() => {
     console.log("onMountの先頭でのdatas:", datas);
     
-    console.log(Object.keys(datas).length);
+    //console.log(Object.keys(datas).length);
 
+    // datasが空の場合はサンプルデータを初期値として適用。
+    if (Object.keys(datas).length === 0) {
+      console.log("test");
+      
+      memoData.set(sampleDatas);
+      //datas = sampleDatas;
+      //console.log(datas);      
+    }
+    
     const unsubscribe = memoData.subscribe((value) => {
       /*title = value.title;
       body = value.body;
       references = value.references;*/
+      console.log("subscribeの中");
+      
       datas = value;
     });
 
+    console.log("datasのプロパティの個数:", Object.keys(datas).length);
+    console.log(datas);
+    
     // datasが空の場合はサンプルデータを初期値として適用。
     /*if (Object.keys(datas).length === 0) {
+      console.log("test");
+      
       memoData.set(sampleDatas);
       //datas = sampleDatas;
-      console.log(datas);      
+      //console.log(datas);      
     }*/
 
     return () => {
