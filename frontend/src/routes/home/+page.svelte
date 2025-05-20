@@ -22,7 +22,7 @@
 
     // datasが空の場合はサンプルデータを初期値として適用。
     if (Object.keys(datas).length === 0) {
-      console.log("test");
+      console.log("ifブロックの中");
       
       memoData.set(sampleDatas);
       //datas = sampleDatas;
@@ -34,6 +34,7 @@
       body = value.body;
       references = value.references;*/
       console.log("subscribeの中");
+      console.log("value:", value);
       
       datas = value;
     });
