@@ -19,6 +19,9 @@
   });
 
   function goToHome() {
+    memoData.set({ title: title, body: body, references: references});
+    console.log("detailのgoToHome内での値", title, body, references);
+    
     goto("/home");
   }
   
