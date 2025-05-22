@@ -2,12 +2,30 @@
   import { memoData } from "$lib/stores/dataStore";
   import { onMount } from "svelte";
 
-  /*let title = "";
-  let body = "";
-  let references = "";
-  */
-  let datas = {};
+  // サンプルデータ
+  const sampleDatas = {
+    title: "テスト1",
+    body: "テスト1の本文",
+    references: "テスト1の参考文献"
+  };
 
+  let title = $memoData.title;
+  let body = $memoData.body;
+  let references = $memoData.references;
+  
+  let datas = {
+    title: title,
+    body: body,
+    references: references
+  };
+
+  // storeの値が初期値(空文字)かを判定する。空文字であればtrueを返す。
+  function isEmpty(obj) {
+    return !obj.title || !obj.body || !obj.references;
+  }
+
+  console.log("isEmpty:", isEmpty(datas));
+  
   console.log("datas定義後の値:", datas);
   
   onMount(() => {
@@ -15,14 +33,14 @@
     
     console.log("datasのプロパティの個数(onMount直後):", Object.keys(datas).length);
 
-    // datasが空の場合はサンプルデータを初期値として適用。
-    /*if (Object.keys(datas).length === 0) {
+    // store値が初期値の場合はサンプルデータを初期値として適用。
+    if (isEmpty(datas)) {
       console.log("ifブロックの中");
       
       memoData.set(sampleDatas);
 
       console.log("set後のdatasの値", datas);
-    }*/
+    }
     
     const unsubscribe = memoData.subscribe((value) => {
       /*title = value.title;
