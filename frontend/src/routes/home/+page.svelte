@@ -2,13 +2,6 @@
   import { memoData } from "$lib/stores/dataStore";
   import { onMount } from "svelte";
 
-  // サンプルデータ
-  const sampleDatas = {
-      title: "テスト1",
-      body: "テスト1の本文",
-      references: "テスト1の参考文献"
-    };
-
   /*let title = "";
   let body = "";
   let references = "";
@@ -23,13 +16,13 @@
     console.log("datasのプロパティの個数(onMount直後):", Object.keys(datas).length);
 
     // datasが空の場合はサンプルデータを初期値として適用。
-    if (Object.keys(datas).length === 0) {
+    /*if (Object.keys(datas).length === 0) {
       console.log("ifブロックの中");
       
       memoData.set(sampleDatas);
 
       console.log("set後のdatasの値", datas);
-    }
+    }*/
     
     const unsubscribe = memoData.subscribe((value) => {
       /*title = value.title;
