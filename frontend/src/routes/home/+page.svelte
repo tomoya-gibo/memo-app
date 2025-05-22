@@ -15,6 +15,8 @@
   */
   let datas = {};
 
+  console.log("datas定義後の値:", datas);
+  
   onMount(() => {
     console.log("onMountの先頭でのdatas:", datas);
     
@@ -25,6 +27,8 @@
       console.log("ifブロックの中");
       
       memoData.set(sampleDatas);
+
+      console.log("set後のdatasの値", datas);
     }
     
     const unsubscribe = memoData.subscribe((value) => {
@@ -35,11 +39,14 @@
       console.log("value:", value);
       
       datas = value;
+
+      console.log("subscribeの中のdatas:", datas);
+      
     });
 
-    console.log("datasのプロパティの個数:", Object.keys(datas).length);
+    console.log("datasのプロパティの個数(subscribe後):", Object.keys(datas).length);
     console.log("subscribe後のdatas:", datas);
-    
+
     return () => {
       unsubscribe();
       // デバッグ用
