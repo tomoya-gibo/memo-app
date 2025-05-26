@@ -3,17 +3,26 @@
   import { onMount } from "svelte";
 
   // サンプルデータ
-  const sampleDatas = {
+  /*const sampleDatas = {
     title: "テスト1",
     body: "テスト1の本文",
     references: "テスト1の参考文献"
-  };
-  
+  };*/
+
   let datas = {
     title: $memoData.title,
     body: $memoData.body,
     references: $memoData.references
   };
+
+  function fetchData() {
+    const res = fetch("http://localhost:8000/home");
+    const data = res.json();
+    console.log("fetchしたdata", data);
+    datas = data;
+    console.log("fetchしたdatas", datas);
+    
+  }
 
   // storeのタイトルが初期値(空文字)かを判定する。空文字であればtrueを返す。
   function isEmpty(obj) {
@@ -52,7 +61,9 @@
     if (isEmpty(datas)) {
       console.log("ifブロックの中");
       
-      memoData.set(sampleDatas);
+      //memoData.set(sampleDatas);
+
+      fetchData();
 
       console.log("set後のdatasの値", datas);
     }
