@@ -18,10 +18,7 @@
   function fetchData() {
     // FIXME いらない変数を定義しない。
     const res = fetch("http://localhost:8000/home");
-    const data = res.json();
-    console.log("fetchしたdata", data);
-    datas = data;
-    console.log("fetchしたdatas", datas);
+    console.log("res:", res);
     
   }
 
