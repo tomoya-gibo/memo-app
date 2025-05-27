@@ -30,6 +30,6 @@ memo_data = {
 @app.get("/home")
 def get_memo_data():
   if not memo_data["title"]:
-    memo_data = initial_data
+    memo_data.update(initial_data)
     print(memo_data)
   return memo_data
