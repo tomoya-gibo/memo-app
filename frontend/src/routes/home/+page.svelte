@@ -2,12 +2,6 @@
   import { memoData } from "$lib/stores/dataStore";
   import { onMount } from "svelte";
 
-  // サンプルデータ
-  /*const sampleDatas = {
-    title: "テスト1",
-    body: "テスト1の本文",
-    references: "テスト1の参考文献"
-  };*/
 
   let datas = {
     title: $memoData.title,
@@ -15,11 +9,11 @@
     references: $memoData.references
   };
 
-  function fetchData() {
-    // FIXME いらない変数を定義しない。
-    const res = fetch("http://localhost:8000/home");
+  async function fetchData() {
+    const res = await fetch("http://localhost:8000/home");
     console.log("res:", res);
-    
+    datas = await res.json();
+    console.log("datas:", datas);
   }
 
   // storeのタイトルが初期値(空文字)かを判定する。空文字であればtrueを返す。
@@ -58,8 +52,6 @@
     */
     if (isEmpty(datas)) {
       console.log("ifブロックの中");
-      
-      //memoData.set(sampleDatas);
 
       fetchData();
 
