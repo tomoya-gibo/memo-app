@@ -14,6 +14,9 @@
     console.log("res:", res);
     datas = await res.json();
     console.log("datas:", datas);
+    
+    // TODO storeを利用しなくなったら削除する。
+    memoData.set(datas);
   }
 
   // storeのタイトルが初期値(空文字)かを判定する。空文字であればtrueを返す。
