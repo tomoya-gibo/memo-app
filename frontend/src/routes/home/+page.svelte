@@ -9,13 +9,14 @@
     references: $memoData.references
   };
 
+  // バックエンドにあるデータを取得する。
   async function fetchData() {
     const res = await fetch("http://localhost:8000/home");
     console.log("res:", res);
     datas = await res.json();
     console.log("datas:", datas);
-    
-    // TODO storeを利用しなくなったら削除する。
+
+    // TODO: storeを利用しなくなったら削除する。
     memoData.set(datas);
   }
 
