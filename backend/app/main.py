@@ -29,4 +29,7 @@ memo_data = {
 
 @app.get("/home")
 def get_memo_data():
-  return initial_data
+  if not memo_data["title"]:
+    memo_data = initial_data
+    print(memo_data)
+  return memo_data
