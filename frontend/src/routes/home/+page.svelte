@@ -1,24 +1,13 @@
 <script>
   import { memoData } from "$lib/stores/dataStore";
   import { onMount } from "svelte";
-
+  import { fetchData } from "$lib/api/fetchData";
 
   let datas = {
     title: $memoData.title,
     body: $memoData.body,
     references: $memoData.references
   };
-
-  // バックエンドにあるデータを取得する。
-  async function fetchData() {
-    const res = await fetch("http://localhost:8000/home");
-    console.log("res:", res);
-    datas = await res.json();
-    console.log("datas:", datas);
-
-    // TODO: storeを利用しなくなったら削除する。
-    memoData.set(datas);
-  }
 
   // storeのタイトルが初期値(空文字)かを判定する。空文字であればtrueを返す。
   function isEmpty(obj) {
@@ -29,7 +18,7 @@
   
   console.log("datas定義後の値:", datas);
   
-  onMount(() => {
+  onMount(async () => {
     console.log("onMountの先頭でのdatas:", datas);
     
     console.log("datasのプロパティの個数(onMount直後):", Object.keys(datas).length);
@@ -56,8 +45,10 @@
     */
     if (isEmpty(datas)) {
       console.log("ifブロックの中");
-
-      fetchData();
+      
+      const fetchURL = "http://localhost:8000";
+      // TODO: storeが不要になったら削除する。
+      memoData.set(await fetchData(fetchURL));
 
       console.log("set後のdatasの値", datas);
     }

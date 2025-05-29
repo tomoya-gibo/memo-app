@@ -27,7 +27,7 @@ memo_data = {
   "references": ""
 }
 
-@app.get("/home")
+@app.get("/")
 def get_memo_data():
   if not memo_data["title"]:
     memo_data.update(initial_data)
