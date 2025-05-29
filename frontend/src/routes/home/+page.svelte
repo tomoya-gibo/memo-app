@@ -46,9 +46,9 @@
     if (isEmpty(datas)) {
       console.log("ifブロックの中");
       
-      const fetchURL = "http://localhost:8000";
+      const fetchedData = await fetchData();
       // TODO: storeが不要になったら削除する。
-      memoData.set(await fetchData(fetchURL));
+      memoData.set(fetchedData);
 
       console.log("set後のdatasの値", datas);
     }
