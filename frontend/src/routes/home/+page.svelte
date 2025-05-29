@@ -14,11 +14,18 @@
     return !obj.title;
   }
 
+  // 非同期が必要な処理だけをまとめて関数化する。
+  async function fetchSetData() {
+    const fetchedData = await fetchData();
+    // TODO: storeが不要になったら削除する。
+    memoData.set(fetchedData);
+  }
+
   console.log("isEmpty:", isEmpty(datas));
   
   console.log("datas定義後の値:", datas);
   
-  onMount(async () => {
+  onMount(() => {
     console.log("onMountの先頭でのdatas:", datas);
     
     console.log("datasのプロパティの個数(onMount直後):", Object.keys(datas).length);
@@ -45,10 +52,8 @@
     */
     if (isEmpty(datas)) {
       console.log("ifブロックの中");
-      
-      const fetchedData = await fetchData();
-      // TODO: storeが不要になったら削除する。
-      memoData.set(fetchedData);
+
+      fetchSetData();
 
       console.log("set後のdatasの値", datas);
     }
