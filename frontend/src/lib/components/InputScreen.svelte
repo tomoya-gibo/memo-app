@@ -1,5 +1,6 @@
 <script>
   import { memoData } from "$lib/stores/dataStore";
+    import { onMount } from "svelte";
   
   export let title;
   export let body;
@@ -17,6 +18,10 @@
     body: body,
     references: references
   }
+
+  console.log("inputData:", inputData);
+  
+  onMount(() => console.log("b"));
 
 </script>
 

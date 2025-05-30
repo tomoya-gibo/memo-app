@@ -15,11 +15,15 @@
     references: $memoData.references
   }
   
+  let title = $memoData.title;
+
   async function fetchSetData() {
     const fetchedData = await fetchData();
     memoData.set(fetchedData);
+    console.log("editでset後のdatas",datas);
+    
   }
-  
+
   function updateData(inputData) {
     memoData.set(inputData);
 
@@ -36,9 +40,11 @@
       
       datas = value;
       console.log("editのsubscribe後のdatas", datas);
-      
+      title = value.title;
     });
 
+    console.log("a");
+    
     if(!datas.title) {
       console.log("editのifブロックの中");
       fetchSetData();
@@ -57,9 +63,9 @@
   console.log("editのdatas:", datas);
   
 </script>
-
+<input type="text" bind:value={title}>
 <InputScreen
-  title={datas.title}
+  title={title}
   body={datas.body}
   references={datas.references}
   onSave={updateData}
