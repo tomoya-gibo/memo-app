@@ -2,15 +2,23 @@
   import { memoData } from "$lib/stores/dataStore";
   import InputScreen from "$lib/components/InputScreen.svelte";
   import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
+  import { fetchData } from "$lib/api/fetchData";
 
   /*
   入力フォームの初期値を取得するため、
   memoData(store)のそれぞれの値にアクセスする。
   */
-  let title = $memoData.title;
-  let body = $memoData.body;
-  let references = $memoData.references;
+  let datas = {
+    title: $memoData.title,
+    body: $memoData.body,
+    references: $memoData.references
+  }
   
+  async function fetchSetData() {
+    const fetchedData = await fetchData();
+    memoData.set(fetchedData);
+  }
   function updateData(inputData) {
     memoData.set(inputData);
 
@@ -21,14 +29,25 @@
     
   };
 
+  onMount(() => {
+    if(!datas.title) {
+      console.log("editのifブロックの中");
+      fetchSetData();
+      //const fetchedData = await fetchData();
+      //memoData.set(fetchedData);
+      console.log("onMount内のeditのdatas", datas);
+      
+    }
+  });
+
   // デバッグ用
-  console.log(title, body, references);
+  console.log("editのdatas:", datas);
   
 </script>
 
 <InputScreen
-  {title}
-  {body}
-  {references}
+  title={datas.title}
+  body={datas.body}
+  references={datas.references}
   onSave={updateData}
 />
