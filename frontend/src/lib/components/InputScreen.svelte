@@ -1,6 +1,6 @@
 <script>
   import { memoData } from "$lib/stores/dataStore";
-    import { onMount } from "svelte";
+  import { onMount } from "svelte";
   
   export let title;
   export let body;
@@ -9,17 +9,7 @@
   // 保存を実行するイベントハンドラを受け取る
   export let onSave;
 
-  /*
-  /detailのsubscribeで受け取るvalueの型がオブジェクトを想定しているため、
-  ユーザから受け取った入力をオブジェクトに変換する。
-  */
-  let inputData = {
-    title: title,
-    body: body,
-    references: references
-  }
-
-  console.log("inputData:", inputData);
+  //console.log("inputData:", inputData);
   
   onMount(() => console.log("b"));
 
@@ -27,13 +17,13 @@
 
 <div class="input">
   <p>タイトル：</p>
-  <input type="text" name="title" bind:value={inputData.title}>
+  <input type="text" name="title" bind:value={title}>
 
   <p>本文：</p>
-  <input type="text" name="body" bind:value={inputData.body}>
+  <input type="text" name="body" bind:value={body}>
 
   <p>参考文献：</p>
-  <input type="text" name="references" bind:value={inputData.references}>
+  <input type="text" name="references" bind:value={references}>
 </div>
 
-<button on:click={() => onSave(inputData)}>保存</button>
+<button on:click={() => onSave(title, body, references)}>保存</button>

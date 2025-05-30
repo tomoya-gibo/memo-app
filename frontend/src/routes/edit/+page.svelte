@@ -14,8 +14,6 @@
     body: $memoData.body,
     references: $memoData.references
   }
-  
-  let title = $memoData.title;
 
   async function fetchSetData() {
     const fetchedData = await fetchData();
@@ -24,7 +22,12 @@
     
   }
 
-  function updateData(inputData) {
+  function updateData(title, body, references) {
+    let inputData = {
+      title: title,
+      body: body,
+      references: references
+    }
     memoData.set(inputData);
 
     goto("/detail");
@@ -40,7 +43,6 @@
       
       datas = value;
       console.log("editのsubscribe後のdatas", datas);
-      title = value.title;
     });
 
     console.log("a");
@@ -63,9 +65,9 @@
   console.log("editのdatas:", datas);
   
 </script>
-<input type="text" bind:value={title}>
+
 <InputScreen
-  title={title}
+  title={datas.title}
   body={datas.body}
   references={datas.references}
   onSave={updateData}
