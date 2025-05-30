@@ -19,17 +19,26 @@
     const fetchedData = await fetchData();
     memoData.set(fetchedData);
   }
+  
   function updateData(inputData) {
     memoData.set(inputData);
 
     goto("/detail");
 
     // デバッグ用
-    console.log(inputData.title, inputData.body, inputData.references);
+    //console.log(inputData.title, inputData.body, inputData.references);
     
   };
 
   onMount(() => {
+    const unsubscribe = memoData.subscribe((value) => {
+      console.log("editのsubscribeの中");
+      
+      datas = value;
+      console.log("editのsubscribe後のdatas", datas);
+      
+    });
+
     if(!datas.title) {
       console.log("editのifブロックの中");
       fetchSetData();
@@ -37,6 +46,10 @@
       //memoData.set(fetchedData);
       console.log("onMount内のeditのdatas", datas);
       
+    }
+
+    return () => {
+      unsubscribe();
     }
   });
 
