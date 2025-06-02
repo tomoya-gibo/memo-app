@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
 
 app = FastAPI()
 
@@ -10,6 +12,13 @@ app.add_middleware(
   allow_methods=["*"],
   allow_headers=["*"]
 )
+
+# リクエストボディのデータモデルを定義
+class Data(BaseModel):
+  title: str
+  body: str
+  references: str
+
 
 # メモデータの初期値(サンプルデータ)
 initial_data = {
