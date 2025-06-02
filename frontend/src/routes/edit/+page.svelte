@@ -24,8 +24,12 @@
   async function postData(inputData) {
     const response = await fetch("http://localhost:8000/edit", {
       method: "POST",
-      body: JSON.stringify(inputData)
+      body: JSON.stringify(inputData),
+      headers: {
+        "Content-Type": "application/json"
+      }
     });
+    
     console.log("ステータス:", response.status);
   }
 
