@@ -19,7 +19,14 @@
     const fetchedData = await fetchData();
     memoData.set(fetchedData);
     console.log("editでset後のdatas",datas);
-    
+  }
+
+  async function postData(inputData) {
+    const response = await fetch("http://localhost:8000/edit", {
+      method: "POST",
+      body: JSON.stringify(inputData)
+    });
+    console.log("ステータス:", response.status);
   }
 
   function updateData(title, body, references) {
@@ -29,6 +36,7 @@
       references: references
     }
     memoData.set(inputData);
+    postData(inputData);
 
     goto("/detail");
 

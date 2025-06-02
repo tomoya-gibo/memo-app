@@ -46,4 +46,4 @@ def get_memo_data():
 @app.post("/edit")
 def post_memo_data(data: Data):
   memo_data.update(data)
-  print(memo_data)
+  print("POST後のデータ", memo_data)
