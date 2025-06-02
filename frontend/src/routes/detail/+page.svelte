@@ -2,17 +2,33 @@
   import { goto } from "$app/navigation";
   import { memoData } from "$lib/stores/dataStore";
   import { onMount } from "svelte";
+  import { fetchData } from "$lib/api/fetchData";
   
   let title = "";
   let body = "";
   let references = "";
 
+  async function fetchSetData() {
+    const fetchedData = await fetchData();
+    memoData.set(fetchedData);
+    await console.log("detailでのset後の各データ", title, body, references);
+  }
+
   onMount(() => {
     const unsubscribe = memoData.subscribe(value => {
+      console.log("detailのsubscribeの中");
+      
       title = value.title;
       body = value.body;
       references = value.references;
     });
+
+    if (!title) {
+      console.log("detailのifブロックの中");
+      
+      fetchSetData();
+    }
+
     return () => {
       unsubscribe();
     }
