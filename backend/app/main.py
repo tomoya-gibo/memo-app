@@ -42,3 +42,8 @@ def get_memo_data():
     memo_data.update(initial_data)
     print(memo_data)
   return memo_data
+
+@app.post("/edit")
+def post_memo_data(data: Data):
+  memo_data.update(data)
+  print(memo_data)
