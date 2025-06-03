@@ -16,9 +16,10 @@
 
   // 非同期が必要な処理だけをまとめて関数化する。
   async function fetchSetData() {
-    const fetchedData = await fetchData();
+    datas = await fetchData();
     // TODO: storeが不要になったら削除する。
-    memoData.set(fetchedData);
+    //memoData.set(fetchedData);
+    console.log("homeのfetch後のdatas", datas);
   }
 
   console.log("isEmpty:", isEmpty(datas));
