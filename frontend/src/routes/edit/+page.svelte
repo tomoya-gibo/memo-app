@@ -5,20 +5,15 @@
   import { onMount } from "svelte";
   import { fetchData } from "$lib/api/fetchData";
 
-  /*
-  入力フォームの初期値を取得するため、
-  memoData(store)のそれぞれの値にアクセスする。
-  */
+
   let datas = {
-    title: $memoData.title,
-    body: $memoData.body,
-    references: $memoData.references
+    title: "",
+    body: "",
+    references: ""
   }
 
   async function fetchSetData() {
-    const fetchedData = await fetchData();
-    memoData.set(fetchedData);
-    datas = fetchedData;
+    datas = await fetchData();
 
     await console.log("editでset後のdatas",datas);
   }
@@ -51,27 +46,8 @@
   };
 
   onMount(() => {
-    const unsubscribe = memoData.subscribe((value) => {
-      console.log("editのsubscribeの中");
-      
-      datas = value;
-      console.log("editのsubscribe後のdatas", datas);
-    });
-
     console.log("a");
     fetchSetData();
-    /*if(!datas.title) {
-      console.log("editのifブロックの中");
-      fetchSetData();
-      //const fetchedData = await fetchData();
-      //memoData.set(fetchedData);
-      console.log("onMount内のeditのdatas", datas);
-      
-    }*/
-
-    return () => {
-      unsubscribe();
-    }
   });
 
   // デバッグ用
