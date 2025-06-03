@@ -4,9 +4,9 @@
   import { fetchData } from "$lib/api/fetchData";
 
   let datas = {
-    title: $memoData.title,
-    body: $memoData.body,
-    references: $memoData.references
+    title: "",
+    body: "",
+    references: ""
   };
 
   // storeのタイトルが初期値(空文字)かを判定する。空文字であればtrueを返す。
