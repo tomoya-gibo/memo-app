@@ -13,8 +13,6 @@
     datas = await fetchData();
     console.log("homeのfetch後のdatas", datas);
   }
-
-  console.log("isEmpty:", isEmpty(datas));
   
   console.log("datas定義後の値:", datas);
   
