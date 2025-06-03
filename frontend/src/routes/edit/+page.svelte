@@ -39,7 +39,6 @@
       body: body,
       references: references
     }
-    memoData.set(inputData);
     postData(inputData);
 
     goto("/detail");

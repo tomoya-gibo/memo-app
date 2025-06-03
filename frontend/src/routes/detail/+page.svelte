@@ -8,30 +8,20 @@
   let body = "";
   let references = "";
 
+  
+  // バックエンドからデータを取得して各変数に代入する関数
   async function fetchSetData() {
     const fetchedData = await fetchData();
     memoData.set(fetchedData);
+    title = fetchedData.title;
+    body = fetchedData.body;
+    references = fetchedData.references;
+
     await console.log("detailでのset後の各データ", title, body, references);
   }
 
   onMount(() => {
-    const unsubscribe = memoData.subscribe(value => {
-      console.log("detailのsubscribeの中");
-      
-      title = value.title;
-      body = value.body;
-      references = value.references;
-    });
-
-    if (!title) {
-      console.log("detailのifブロックの中");
-      
-      fetchSetData();
-    }
-
-    return () => {
-      unsubscribe();
-    }
+    fetchSetData();
   });
 
   function goToHome() {
