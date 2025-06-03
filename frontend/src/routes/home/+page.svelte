@@ -1,5 +1,4 @@
 <script>
-  import { memoData } from "$lib/stores/dataStore";
   import { onMount } from "svelte";
   import { fetchData } from "$lib/api/fetchData";
 

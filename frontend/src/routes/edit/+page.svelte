@@ -1,5 +1,4 @@
 <script>
-  import { memoData } from "$lib/stores/dataStore";
   import InputScreen from "$lib/components/InputScreen.svelte";
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";

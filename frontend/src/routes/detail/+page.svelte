@@ -1,6 +1,5 @@
 <script>
   import { goto } from "$app/navigation";
-  import { memoData } from "$lib/stores/dataStore";
   import { onMount } from "svelte";
   import { fetchData } from "$lib/api/fetchData";
   
@@ -8,11 +7,10 @@
   let body = "";
   let references = "";
 
-  
+
   // バックエンドからデータを取得して各変数に代入する関数
   async function fetchSetData() {
     const fetchedData = await fetchData();
-    memoData.set(fetchedData);
     title = fetchedData.title;
     body = fetchedData.body;
     references = fetchedData.references;
@@ -25,7 +23,6 @@
   });
 
   function goToHome() {
-    memoData.set({ title: title, body: body, references: references});
     console.log("detailのgoToHome内での値", title, body, references);
     
     goto("/home");
