@@ -18,7 +18,9 @@
   async function fetchSetData() {
     const fetchedData = await fetchData();
     memoData.set(fetchedData);
-    console.log("editでset後のdatas",datas);
+    datas = fetchedData;
+
+    await console.log("editでset後のdatas",datas);
   }
 
   async function postData(inputData) {
@@ -57,15 +59,15 @@
     });
 
     console.log("a");
-    
-    if(!datas.title) {
+    fetchSetData();
+    /*if(!datas.title) {
       console.log("editのifブロックの中");
       fetchSetData();
       //const fetchedData = await fetchData();
       //memoData.set(fetchedData);
       console.log("onMount内のeditのdatas", datas);
       
-    }
+    }*/
 
     return () => {
       unsubscribe();
