@@ -30,7 +30,6 @@ initial_data = {
 # 編集されるメモデータ
 # /frontend/src/routes/editで編集されたtitle, body, referencesが格納される。
 memo_data = {
-  # TODO: 各項目がeditで入力された値を受け取るようにする。
   "title": "",
   "body": "",
   "references": ""

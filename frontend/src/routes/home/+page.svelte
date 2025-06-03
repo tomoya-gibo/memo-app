@@ -8,11 +8,6 @@
     references: ""
   };
 
-  // storeのタイトルが初期値(空文字)かを判定する。空文字であればtrueを返す。
-  function isEmpty(obj) {
-    return !obj.title;
-  }
-
   // 非同期が必要な処理だけをまとめて関数化する。
   async function fetchSetData() {
     datas = await fetchData();
@@ -32,18 +27,6 @@
     console.log("subscribe後のdatas:", datas);
 
     fetchSetData();
-
-    /*
-    storeのtitleが初期値の場合はサンプルデータを初期値として適用。
-    subscribeで変更を購読した後に判定を行う。
-    */
-    /*if (isEmpty(datas)) {
-      console.log("ifブロックの中");
-
-      fetchSetData();
-
-      console.log("set後のdatasの値", datas);
-    }*/
 
     return () => {
       //unsubscribe();
