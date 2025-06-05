@@ -42,4 +42,7 @@
 <div class="home">
   <h1>メモタイトル一覧</h1>
     <li><a href="/detail">{datas.title}</a></li>
+  <div class="button">
+    <a href="/new"><button>新規作成</button></a>
+  </div>
 </div>
