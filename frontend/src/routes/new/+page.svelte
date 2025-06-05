@@ -1,6 +1,6 @@
 <script>
   import InputScreen from "$lib/components/InputScreen.svelte";
-
+  import { goto } from "$app/navigation";
 
   let title = "";
   let body = "";
@@ -8,6 +8,7 @@
 
   function handleCreateNew(title, body, references) {
     // TODO: 保存して画面を遷移する処理を記述する。
+    goto("/detail");
   }
 </script>
 
