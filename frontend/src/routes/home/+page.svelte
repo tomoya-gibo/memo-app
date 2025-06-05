@@ -2,11 +2,7 @@
   import { onMount } from "svelte";
   import { fetchData } from "$lib/api/fetchData";
 
-  let datas = {
-    title: "",
-    body: "",
-    references: ""
-  };
+  let datas = [];
 
   // 非同期が必要な処理だけをまとめて関数化する。
   async function fetchSetData() {
@@ -41,7 +37,9 @@
 
 <div class="home">
   <h1>メモタイトル一覧</h1>
-    <li><a href="/detail">{datas.title}</a></li>
+  {#each datas as data}
+    <li><a href="/detail">{data.title}</a></li>
+  {/each}
   <div class="button">
     <a href="/new"><button>新規作成</button></a>
   </div>
