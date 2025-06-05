@@ -31,12 +31,12 @@ initial_data = {
 # /frontend/src/routes/editで編集されたtitle, body, referencesが格納される。
 memo_data = [
   {
-    "title": "",
-    "body": "",
-    "references": ""
+    "title": "テスト",
+    "body": "テストの本文",
+    "references": "テストの参考文献"
   },
   {
-    "title": "テスト2",
+    "title": "",
     "body": "テスト2の本文",
     "references": "テスト2の参考文献"
   },
@@ -49,12 +49,16 @@ memo_data = [
 
 @app.get("/")
 def get_memo_data():
-  for data in memo_data:
-    title = data.get("title")
-    if not title:
-      memo_data[0].update(initial_data)
-      print(memo_data[0])
-    return memo_data
+  memo_data_length = len(memo_data)
+  print(memo_data_length)
+  for i in range(memo_data_length):
+    for data in memo_data:
+      title = data.get("title")
+      print(f"{i}番目の{title}")
+      if not title:
+        memo_data[i].update(initial_data)
+        print(memo_data[i])
+  return memo_data
 
 @app.post("/edit")
 def post_memo_data(data: Data):
