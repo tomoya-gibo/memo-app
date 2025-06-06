@@ -52,18 +52,22 @@ memo_data = [
 
 @app.get("/")
 def get_memo_data():
-  for data in memo_data:
-    title = data.get("title")
-    #id = data.get("id")
-    print("title:", title)
-    if not title:
-      print("titleが空文字")
-      #print("id:", id)
-      #memo_data[id].update(initial_data)
-      #print(memo_data[id])
-      title = initial_data["title"]
-      body = initial_data["body"]
-      refereces = initial_data["references"]
+  memo_data_length = len(memo_data)
+  print("memo_dataの長さ:", memo_data_length)
+  for i in range(memo_data_length):
+    print("ループの回数:", i)
+    for data in memo_data:
+      title = data.get("title")
+      #id = data.get("id")
+      print("title:", title)
+      if not title:
+        print("titleが空文字")
+        #print("id:", id)
+        #memo_data[id].update(initial_data)
+        #print(memo_data[id])
+        title = initial_data["title"]
+        body = initial_data["body"]
+        refereces = initial_data["references"]
   return memo_data
 
 @app.post("/edit")
