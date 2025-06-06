@@ -55,6 +55,7 @@ def get_memo_data():
   for data in memo_data:
     title = data.get("title")
     #id = data.get("id")
+    print("title:", title)
     if not title:
       #print("id:", id)
       #memo_data[id].update(initial_data)
