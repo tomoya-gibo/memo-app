@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
+import time
 
 app = FastAPI()
 
@@ -31,16 +31,16 @@ initial_data = {
 # /frontend/src/routes/editで編集されたtitle, body, referencesが格納される。
 memo_data = [
   {
-    "title": "テスト",
+    "title": "",
     "body": "テストの本文",
     "references": "テストの参考文献",
-    "id": 0
+    "id": 1
   },
   {
-    "title": "",
+    "title": "テスト2",
     "body": "テスト2の本文",
     "references": "テスト2の参考文献",
-    "id": 1
+    "id": 0
   },
   {
     "title": "",
@@ -56,6 +56,7 @@ def get_memo_data():
     title = data.get("title")
     id = data.get("id")
     if not title:
+      print("id:", id)
       memo_data[id].update(initial_data)
       print(memo_data[id])
   return memo_data
