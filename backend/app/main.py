@@ -57,6 +57,7 @@ def get_memo_data():
     #id = data.get("id")
     print("title:", title)
     if not title:
+      print("titleが空文字")
       #print("id:", id)
       #memo_data[id].update(initial_data)
       #print(memo_data[id])
