@@ -58,6 +58,10 @@ def get_memo_data():
       data.update(initial_data)
   return memo_data
 
+@app.get("/detail/{data_id}")
+def get_detail_data(data_id):
+  return memo_data[data_id]
+
 @app.post("/edit")
 def post_memo_data(data: Data):
   memo_data.update(data)
