@@ -33,31 +33,31 @@ memo_data = [
   {
     "title": "テスト",
     "body": "テストの本文",
-    "references": "テストの参考文献"
+    "references": "テストの参考文献",
+    "id": 0
   },
   {
     "title": "",
     "body": "テスト2の本文",
-    "references": "テスト2の参考文献"
+    "references": "テスト2の参考文献",
+    "id": 1
   },
   {
-    "title": "テスト3",
+    "title": "",
     "body": "テスト3の本文",
-    "references": "テスト3の参考文献"
+    "references": "テスト3の参考文献",
+    "id": 2
   }
 ]
 
 @app.get("/")
 def get_memo_data():
-  memo_data_length = len(memo_data)
-  print(memo_data_length)
-  for i in range(memo_data_length):
-    for data in memo_data:
-      title = data.get("title")
-      print(f"{i}番目の{title}")
-      if not title:
-        memo_data[i].update(initial_data)
-        print(memo_data[i])
+  for data in memo_data:
+    title = data.get("title")
+    id = data.get("id")
+    if not title:
+      memo_data[id].update(initial_data)
+      print(memo_data[id])
   return memo_data
 
 @app.post("/edit")
