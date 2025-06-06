@@ -52,16 +52,15 @@ memo_data = [
 
 @app.get("/")
 def get_memo_data():
-  index = 0
+  memo_data_length = len(memo_data)
 
-  for data in memo_data:
-    print("index:", index)
-    title = data.get("title")
+  for i in range(memo_data_length):
+    title = memo_data[i].get("title")
     print("title:", title)
+    
     if not title:
       print("titleが空文字")
-      memo_data[index].update(initial_data)
-    index += 1
+      memo_data[i].update(initial_data)
       
   return memo_data
 
