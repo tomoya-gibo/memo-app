@@ -6,7 +6,8 @@
 
   // 非同期が必要な処理だけをまとめて関数化する。
   async function fetchSetData() {
-    datas = await fetchData();
+    const fetchUrl = "http://localhost:8000"
+    datas = await fetchData(fetchUrl);
     console.log("homeのfetch後のdatas", datas);
   }
   
