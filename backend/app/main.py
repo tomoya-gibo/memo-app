@@ -52,16 +52,10 @@ memo_data = [
 
 @app.get("/")
 def get_memo_data():
-  memo_data_length = len(memo_data)
-
-  for i in range(memo_data_length):
-    title = memo_data[i].get("title")
-    print("title:", title)
-    
+  for data in memo_data:
+    title = data.get("title")
     if not title:
-      print("titleが空文字")
-      memo_data[i].update(initial_data)
-      
+      data.update(initial_data)
   return memo_data
 
 @app.post("/edit")
