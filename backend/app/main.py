@@ -54,11 +54,14 @@ memo_data = [
 def get_memo_data():
   for data in memo_data:
     title = data.get("title")
-    id = data.get("id")
+    #id = data.get("id")
     if not title:
-      print("id:", id)
-      memo_data[id].update(initial_data)
-      print(memo_data[id])
+      #print("id:", id)
+      #memo_data[id].update(initial_data)
+      #print(memo_data[id])
+      title = initial_data["title"]
+      body = initial_data["body"]
+      refereces = initial_data["references"]
   return memo_data
 
 @app.post("/edit")
