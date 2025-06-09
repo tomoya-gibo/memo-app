@@ -60,6 +60,7 @@ def get_memo_data():
 
 @app.get("/detail/{data_id}")
 def get_detail_data(data_id: int):
+  print("data_id:", data_id)
   for data in memo_data:
     id = data.get("id")
     if id == data_id:
