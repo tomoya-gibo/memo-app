@@ -10,7 +10,8 @@
 
   // バックエンドからデータを取得して各変数に代入する関数
   async function fetchSetData() {
-    const fetchedData = await fetchData();
+    const fetchUrl = "http://localhost:8000/detail"
+    const fetchedData = await fetchData(fetchUrl);
     title = fetchedData.title;
     body = fetchedData.body;
     references = fetchedData.references;
