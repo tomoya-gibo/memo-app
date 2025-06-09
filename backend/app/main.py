@@ -22,18 +22,18 @@ class Data(BaseModel):
 
 # メモデータの初期値(サンプルデータ)
 initial_data = {
-  "title": "テスト1",
-  "body": "テスト1の本文",
-  "references": "テスト1の参考文献"
+  "title": "サンプルデータ",
+  "body": "サンプルデータの本文",
+  "references": "サンプルデータの参考文献"
 }
 
 # 編集されるメモデータ
 # /frontend/src/routes/editで編集されたtitle, body, referencesが格納される。
 memo_data = [
   {
-    "title": "テスト",
-    "body": "テストの本文",
-    "references": "テストの参考文献",
+    "title": "テスト1",
+    "body": "テスト1の本文",
+    "references": "テスト1の参考文献",
     "id": 1
   },
   {
@@ -43,7 +43,7 @@ memo_data = [
     "id": 0
   },
   {
-    "title": "",
+    "title": "テスト3",
     "body": "テスト3の本文",
     "references": "テスト3の参考文献",
     "id": 2
@@ -59,7 +59,7 @@ def get_memo_data():
   return memo_data
 
 @app.get("/detail/{data_id}")
-def get_detail_data(data_id):
+def get_detail_data(data_id: int):
   return memo_data[data_id]
 
 @app.post("/edit")
