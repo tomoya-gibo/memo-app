@@ -58,6 +58,7 @@ def get_memo_data():
       data.update(initial_data)
   return memo_data
 
+# TODO: titleが空の場合は初期値を設定する処理を書く
 @app.get("/detail/{data_id}")
 def get_detail_data(data_id: int):
   print("data_id:", data_id)
@@ -66,7 +67,11 @@ def get_detail_data(data_id: int):
     if id == data_id:
       return data
 
-@app.post("/edit")
-def post_memo_data(data: Data):
-  memo_data.update(data)
-  print("POST後のデータ", memo_data)
+@app.post("/edit/{data_id}")
+def post_memo_data(data_id: int, edit_data: Data):
+  for data in memo_data:
+    id = data.get("id")
+    if id == data_id:
+      data.update(edit_data)
+      print("POST後のデータ", data)
+      return data

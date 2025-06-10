@@ -21,7 +21,7 @@
   }
 
   async function postData(inputData) {
-    const response = await fetch("http://localhost:8000/edit", {
+    const response = await fetch("http://localhost:8000/edit/" + id, {
       method: "POST",
       body: JSON.stringify(inputData),
       headers: {
