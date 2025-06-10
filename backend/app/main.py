@@ -58,13 +58,15 @@ def get_memo_data():
       data.update(initial_data)
   return memo_data
 
-# TODO: titleが空の場合は初期値を設定する処理を書く
 @app.get("/detail/{data_id}")
 def get_detail_data(data_id: int):
   print("data_id:", data_id)
   for data in memo_data:
     id = data.get("id")
+    title = data.get("title")
     if id == data_id:
+      if not title:
+        data.update(initial_data)
       return data
 
 @app.post("/edit/{data_id}")
