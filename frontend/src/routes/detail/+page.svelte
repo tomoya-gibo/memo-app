@@ -2,15 +2,19 @@
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import { fetchData } from "$lib/api/fetchData";
+  import { page } from "$app/state";
   
   let title = "";
   let body = "";
   let references = "";
-
+  const id = page.url.searchParams.get("id");
 
   // バックエンドからデータを取得して各変数に代入する関数
   async function fetchSetData() {
-    const fetchUrl = "http://localhost:8000/detail/1";
+    console.log("受け取ったid:", id);
+    
+    // クリックしたデータのidに紐づいたデータを取得し、各要素に代入
+    const fetchUrl = "http://localhost:8000/detail/" + id;
     const fetchedData = await fetchData(fetchUrl);
     title = fetchedData.title;
     body = fetchedData.body;

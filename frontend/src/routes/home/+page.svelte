@@ -39,7 +39,7 @@
 <div class="home">
   <h1>メモタイトル一覧</h1>
   {#each datas as data}
-    <li><a href="/detail?id=${data.id}">{data.title}</a></li>
+    <li><a href="/detail?id={data.id}">{data.title}</a></li>
   {/each}
   <div class="button">
     <a href="/new"><button>新規作成</button></a>
