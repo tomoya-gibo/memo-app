@@ -6,7 +6,7 @@
 
   // 非同期が必要な処理だけをまとめて関数化する。
   async function fetchSetData() {
-    const fetchUrl = "http://localhost:8000"
+    const fetchUrl = "http://localhost:8000";
     datas = await fetchData(fetchUrl);
     console.log("homeのfetch後のdatas", datas);
   }
@@ -39,7 +39,7 @@
 <div class="home">
   <h1>メモタイトル一覧</h1>
   {#each datas as data}
-    <li><a href="/detail">{data.title}</a></li>
+    <li><a href="/detail?id=${data.id}">{data.title}</a></li>
   {/each}
   <div class="button">
     <a href="/new"><button>新規作成</button></a>
