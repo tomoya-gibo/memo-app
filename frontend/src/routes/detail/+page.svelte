@@ -41,5 +41,5 @@
   <h2>参考文献：</h2>
   <p>{references}</p>
   <button on:click={goToHome}>メモ一覧に戻る</button>
-  <a href="/edit"><button>編集する</button></a>
+  <a href="/edit?id={id}"><button>編集する</button></a>
 </div>

@@ -3,7 +3,7 @@
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
   import { fetchData } from "$lib/api/fetchData";
-
+  import { page } from "$app/state";
 
   let datas = {
     title: "",
@@ -11,8 +11,11 @@
     references: ""
   }
 
+  const id = page.url.searchParams.get("id");
+
   async function fetchSetData() {
-    datas = await fetchData();
+    const fetchUrl = "http://localhost:8000/detail/" + id;
+    datas = await fetchData(fetchUrl);
 
     await console.log("editでset後のdatas",datas);
   }
