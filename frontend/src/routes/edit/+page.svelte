@@ -40,7 +40,7 @@
     }
     postData(inputData);
 
-    goto("/detail");
+    goto(`/detail?id=${id}`);
 
     // デバッグ用
     //console.log(inputData.title, inputData.body, inputData.references);
