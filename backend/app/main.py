@@ -91,6 +91,7 @@ def post_memo_data(data_id: int, edit_data: EditData):
     
 # /newでメモを新規に作成して保存する
 @app.post("/new")
-def post_new_data(new_data: NewData):
-  memo_data.append(new_data)
+def post_new_data(new_data: EditData):
+  print("new_dataの型:", type(new_data) is object)
+  #memo_data.append(new_data)
   print("memo_data: ", memo_data)
