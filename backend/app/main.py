@@ -1,9 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Union
-
-import time
 
 
 app = FastAPI()
@@ -37,26 +34,7 @@ initial_data = {
 
 # 編集されるメモデータ
 # /frontend/src/routes/editで編集されたtitle, body, referencesが格納される。
-memo_data = [
-  {
-    "title": "テスト1",
-    "body": "テスト1の本文",
-    "references": "テスト1の参考文献",
-    "id": 1
-  },
-  {
-    "title": "",
-    "body": "テスト2の本文",
-    "references": "テスト2の参考文献",
-    "id": 0
-  },
-  {
-    "title": "テスト3",
-    "body": "テスト3の本文",
-    "references": "テスト3の参考文献",
-    "id": 2
-  }
-]
+memo_data = []
 
 # memo_dataのすべての要素を取得する
 @app.get("/")
