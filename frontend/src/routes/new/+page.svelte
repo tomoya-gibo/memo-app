@@ -17,12 +17,11 @@
   }
 
   function handleCreateNew(title, body, references) {
-    // TODO: 保存して画面を遷移する処理を記述する。
     let inputData = {
       title: title,
       body: body,
       references:references,
-      id: 4
+      id: Date.now()
     }
     postNewData(inputData);
 
