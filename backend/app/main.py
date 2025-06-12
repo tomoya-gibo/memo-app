@@ -50,6 +50,7 @@ memo_data = [
   }
 ]
 
+# memo_dataのすべての要素を取得する
 @app.get("/")
 def get_memo_data():
   for data in memo_data:
@@ -58,6 +59,7 @@ def get_memo_data():
       data.update(initial_data)
   return memo_data
 
+# /detailで対象のデータを取得する
 @app.get("/detail/{data_id}")
 def get_detail_data(data_id: int):
   print("data_id:", data_id)
@@ -69,6 +71,7 @@ def get_detail_data(data_id: int):
         data.update(initial_data)
       return data
 
+# /editで変更内容を保存する
 @app.post("/edit/{data_id}")
 def post_memo_data(data_id: int, edit_data: Data):
   for data in memo_data:
