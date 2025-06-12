@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import Union
+
 import time
+
 
 app = FastAPI()
 
@@ -18,6 +21,7 @@ class Data(BaseModel):
   title: str
   body: str
   references: str
+  id: Union[int, None] = None
 
 
 # メモデータの初期値(サンプルデータ)
@@ -83,6 +87,6 @@ def post_memo_data(data_id: int, edit_data: Data):
     
 # /newでメモを新規に作成して保存する
 @app.post("/new")
-def post_new_data(new_data):
+def post_new_data(new_data: Data):
   memo_data.append(new_data)
   print("memo_data: ", memo_data)
