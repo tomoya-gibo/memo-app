@@ -82,16 +82,24 @@ def get_detail_data(data_id: int):
 # /editで変更内容を保存する
 @app.post("/edit/{data_id}")
 def post_memo_data(data_id: int, edit_data: EditData):
+  print("edit_dataの型:", type(edit_data))
   for data in memo_data:
     id = data.get("id")
     if id == data_id:
       data.update(edit_data)
+
       print("POST後のデータ", data)
       return data
     
 # /newでメモを新規に作成して保存する
 @app.post("/new")
-def post_new_data(new_data: EditData):
-  print("new_dataの型:", type(new_data) is object)
-  #memo_data.append(new_data)
+def post_new_data(new_data: NewData):
+  print("new_dataの型:", type(new_data))
+  print("new_dataはdictか？:", type(new_data) is dict)
+  
+  # new_dataをdict型に変換し、memo_dataの末尾に追加する
+  data = {}
+  data.update(new_data)
+  print("data:", data)
+  memo_data.append(data)
   print("memo_data: ", memo_data)
