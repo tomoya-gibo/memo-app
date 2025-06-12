@@ -17,12 +17,16 @@ app.add_middleware(
 )
 
 # リクエストボディのデータモデルを定義
-class Data(BaseModel):
+class EditData(BaseModel):
   title: str
   body: str
   references: str
-  id: Union[int, None] = None
 
+class NewData(BaseModel):
+  title: str
+  body: str
+  references: str
+  id: int
 
 # メモデータの初期値(サンプルデータ)
 initial_data = {
@@ -77,7 +81,7 @@ def get_detail_data(data_id: int):
 
 # /editで変更内容を保存する
 @app.post("/edit/{data_id}")
-def post_memo_data(data_id: int, edit_data: Data):
+def post_memo_data(data_id: int, edit_data: EditData):
   for data in memo_data:
     id = data.get("id")
     if id == data_id:
@@ -87,6 +91,6 @@ def post_memo_data(data_id: int, edit_data: Data):
     
 # /newでメモを新規に作成して保存する
 @app.post("/new")
-def post_new_data(new_data: Data):
+def post_new_data(new_data: NewData):
   memo_data.append(new_data)
   print("memo_data: ", memo_data)
