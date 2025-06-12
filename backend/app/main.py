@@ -80,3 +80,9 @@ def post_memo_data(data_id: int, edit_data: Data):
       data.update(edit_data)
       print("POST後のデータ", data)
       return data
+    
+# /newでメモを新規に作成して保存する
+@app.post("/new")
+def post_new_data(new_data):
+  memo_data.append(new_data)
+  print("memo_data: ", memo_data)
