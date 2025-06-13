@@ -79,7 +79,7 @@ def post_memo_data(data_id: int, edit_data: EditData):
       data.update(edit_data)
       print("POST後のデータ", data)
       with open(data_path, "w") as f:
-        json.dump(memo_data, f)
+        json.dump(memo_data, f, ensure_ascii=False, indent=2)
         print(memo_data)    
     
 # /newでメモを新規に作成して保存する
