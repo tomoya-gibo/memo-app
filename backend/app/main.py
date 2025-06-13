@@ -70,13 +70,17 @@ def get_detail_data(data_id: int):
 @app.post("/edit/{data_id}")
 def post_memo_data(data_id: int, edit_data: EditData):
   print("edit_dataの型:", type(edit_data))
+  with open(data_path) as f:
+    memo_data = json.load(f)
+  
   for data in memo_data:
     id = data.get("id")
     if id == data_id:
       data.update(edit_data)
 
       print("POST後のデータ", data)
-      return data
+      with open(data_path, "w") as f:
+        json.dump(data, f)
     
 # /newでメモを新規に作成して保存する
 @app.post("/new")
