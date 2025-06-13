@@ -2,9 +2,16 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import json
+import sqlite3
 
 
 app = FastAPI()
+
+# SQLiteを実装してmemo_dataテーブルを作成
+con = sqlite3.connect("memoapp.db")
+cur = con.cursor()
+cur.execute("CREATE TABLE IF NOT EXISTS memo_data(title, body, reference_list)")
+
 
 app.add_middleware(
   CORSMiddleware,
@@ -32,10 +39,6 @@ initial_data = {
   "body": "サンプルデータの本文",
   "references": "サンプルデータの参考文献"
 }
-
-# 編集されるメモデータ
-# /frontend/src/routes/editで編集されたtitle, body, referencesが格納される。
-#memo_data = []
 
 data_path = "../data.json"
 
