@@ -77,10 +77,10 @@ def post_memo_data(data_id: int, edit_data: EditData):
     id = data.get("id")
     if id == data_id:
       data.update(edit_data)
-
       print("POST後のデータ", data)
-      with open(data_path, "a") as f:
-        json.dump(data, f)
+      with open(data_path, "w") as f:
+        json.dump(memo_data, f)
+        print(memo_data)    
     
 # /newでメモを新規に作成して保存する
 @app.post("/new")
