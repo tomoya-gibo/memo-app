@@ -88,9 +88,16 @@ def post_new_data(new_data: NewData):
   print("new_dataの型:", type(new_data))
   print("new_dataはdictか？:", type(new_data) is dict)
   
+  with open(data_path) as f:
+    memo_data = json.load(f)
+
   # new_dataをdict型に変換し、memo_dataの末尾に追加する
   data = {}
   data.update(new_data)
   print("data:", data)
   memo_data.append(data)
   print("memo_data: ", memo_data)
+  
+  with open(data_path, "w") as f:
+    json.dump(memo_data, f, ensure_ascii=False, indent=2)
+    print(memo_data)
