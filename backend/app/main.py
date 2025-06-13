@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import json
 
 
 app = FastAPI()
@@ -34,11 +35,14 @@ initial_data = {
 
 # 編集されるメモデータ
 # /frontend/src/routes/editで編集されたtitle, body, referencesが格納される。
-memo_data = []
+#memo_data = []
 
 # memo_dataのすべての要素を取得する
 @app.get("/")
 def get_memo_data():
+  with open("../data.json") as f:
+    memo_data = json.load(f)
+    print("memo_data:", memo_data)
   for data in memo_data:
     title = data.get("title")
     if not title:
