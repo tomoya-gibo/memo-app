@@ -37,10 +37,12 @@ initial_data = {
 # /frontend/src/routes/editで編集されたtitle, body, referencesが格納される。
 #memo_data = []
 
+data_path = "../data.json"
+
 # memo_dataのすべての要素を取得する
 @app.get("/")
 def get_memo_data():
-  with open("../data.json") as f:
+  with open(data_path) as f:
     memo_data = json.load(f)
     print("memo_data:", memo_data)
   for data in memo_data:
@@ -53,9 +55,9 @@ def get_memo_data():
 @app.get("/detail/{data_id}")
 def get_detail_data(data_id: int):
   print("data_id:", data_id)
-  with open("../data.json") as f:
+  with open(data_path) as f:
     memo_data = json.load(f)
-    
+
   for data in memo_data:
     id = data.get("id")
     title = data.get("title")
