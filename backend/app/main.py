@@ -53,6 +53,9 @@ def get_memo_data():
 @app.get("/detail/{data_id}")
 def get_detail_data(data_id: int):
   print("data_id:", data_id)
+  with open("../data.json") as f:
+    memo_data = json.load(f)
+    
   for data in memo_data:
     id = data.get("id")
     title = data.get("title")
