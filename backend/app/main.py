@@ -49,13 +49,13 @@ initial_data = {
   "references": "サンプルデータの参考文献"
 }
 
+create_table()
+
 data_path = "../data.json"
 
 # memo_dataのすべての要素を取得する
 @app.get("/")
 def get_memo_data():
-  create_table()
-
   con = sqlite3.connect("memoapp.db")
   cur = con.cursor()
   cur.execute("SELECT * FROM memo_data")
