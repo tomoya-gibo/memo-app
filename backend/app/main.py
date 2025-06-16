@@ -58,8 +58,12 @@ def get_memo_data():
 
   con = sqlite3.connect("memoapp.db")
   cur = con.cursor()
-  memo_data = cur.execute("SELECT * FROM memo_data")
+  cur.execute("SELECT * FROM memo_data")
+  memo_data = cur.fetchall()
   print(memo_data)
+
+  con.commit()
+  con.close()
   
   for data in memo_data:
     title = data.get("title")
