@@ -21,6 +21,20 @@ def create_table():
   con.commit()
   con.close()
 
+# SQLiteはデフォルトでタプルを返すため、dictに変換する
+def dict_factory(cursor, row):
+  fields = []
+  for column in cursor.description:
+    print("columnの中身: ", column)
+    fields.append(column[0])
+
+  print("fieldsの中身: ", fields)
+  
+  for key, value in zip(fields, row):
+    dictionary = {key: value}
+    print("dictionary: ", dictionary)
+  
+  return dictionary
 
 app.add_middleware(
   CORSMiddleware,
@@ -108,6 +122,10 @@ def post_new_data(new_data: NewData):
   print("new_dataの型:", type(new_data))
   print("new_dataはdictか？:", type(new_data) is dict)
   
+  con = sqlite3.connect("memoapp.db")
+  cur = con.cursor()
+  cur.execute("INSERT INTO memo_data")
+
   with open(data_path) as f:
     memo_data = json.load(f)
 
