@@ -13,10 +13,10 @@ def create_table():
   cur = con.cursor()
   cur.execute("""
       CREATE TABLE IF NOT EXISTS memo_data (
-              id INTEGER PRIMARY KEY,
               title TEXT,
               body TEXT,
-              references_list TEXT)
+              references_list TEXT,
+              id INTEGER PRIMARY KEY)
   """)
   con.commit()
   con.close()
