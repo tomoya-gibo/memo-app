@@ -53,9 +53,9 @@ data_path = "../data.json"
 # memo_dataのすべての要素を取得する
 @app.get("/")
 def get_memo_data():
-  with open(data_path) as f:
-    memo_data = json.load(f)
-    print("memo_data:", memo_data)
+  
+  memo_data = cur.execute("SELECT * FROM memo_data")
+  con.commit()
   for data in memo_data:
     title = data.get("title")
     if not title:
