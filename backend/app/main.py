@@ -10,7 +10,15 @@ app = FastAPI()
 # SQLiteを実装してmemo_dataテーブルを作成
 con = sqlite3.connect("memoapp.db")
 cur = con.cursor()
-cur.execute("CREATE TABLE IF NOT EXISTS memo_data(title, body, reference_list)")
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS memo_data (
+            id INTEGER,
+            title TEXT,
+            body TEXT,
+            references_list TEXT)
+""")
+con.commit()
+con.close()
 
 
 app.add_middleware(
