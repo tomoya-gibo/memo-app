@@ -7,18 +7,19 @@ import sqlite3
 
 app = FastAPI()
 
-# SQLiteを実装してmemo_dataテーブルを作成
-con = sqlite3.connect("memoapp.db")
-cur = con.cursor()
-cur.execute("""
-    CREATE TABLE IF NOT EXISTS memo_data (
-            id INTEGER,
-            title TEXT,
-            body TEXT,
-            references_list TEXT)
-""")
-con.commit()
-con.close()
+# SQLiteを実装してmemo_dataテーブルを作成する関数
+def create_table():
+  con = sqlite3.connect("memoapp.db")
+  cur = con.cursor()
+  cur.execute("""
+      CREATE TABLE IF NOT EXISTS memo_data (
+              id INTEGER PRIMARY KEY,
+              title TEXT,
+              body TEXT,
+              references_list TEXT)
+  """)
+  con.commit()
+  con.close()
 
 
 app.add_middleware(
@@ -53,9 +54,13 @@ data_path = "../data.json"
 # memo_dataのすべての要素を取得する
 @app.get("/")
 def get_memo_data():
-  
+  create_table()
+
+  con = sqlite3.connect("memoapp.db")
+  cur = con.cursor()
   memo_data = cur.execute("SELECT * FROM memo_data")
-  con.commit()
+  print(memo_data)
+  
   for data in memo_data:
     title = data.get("title")
     if not title:
