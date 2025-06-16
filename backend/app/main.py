@@ -124,9 +124,11 @@ def post_new_data(new_data: NewData):
   
   con = sqlite3.connect("memoapp.db")
   cur = con.cursor()
-  cur.execute("INSERT INTO memo_data")
-
-  with open(data_path) as f:
+  cur.execute("INSERT INTO memo_data VALUES(?, ?, ?, ?)", new_data)
+  con.commit()
+  con.close()
+  
+  """with open(data_path) as f:
     memo_data = json.load(f)
 
   # new_dataをdict型に変換し、memo_dataの末尾に追加する
@@ -138,4 +140,4 @@ def post_new_data(new_data: NewData):
   
   with open(data_path, "w") as f:
     json.dump(memo_data, f, ensure_ascii=False, indent=2)
-    print(memo_data)
+    print(memo_data)"""
