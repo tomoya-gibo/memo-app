@@ -101,18 +101,12 @@ def get_detail_data(data_id: int):
   con.row_factory = dict_factory
   cur = con.cursor()
   cur.execute("SELECT * FROM memo_data WHERE id=?", (data_id,))
-  memo_data = cur.fetchall()
-  print("memo_data:", memo_data)
+  detail_data = cur.fetchone()
+  print("detail_data:", detail_data)
   con.commit()
   con.close()
 
-  for data in memo_data:
-    id = data.get("id")
-    title = data.get("title")
-    if id == data_id:
-      if not title:
-        data.update(initial_data)
-      return data
+  return detail_data
 
 # /editで変更内容を保存する
 @app.post("/edit/{data_id}")
