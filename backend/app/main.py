@@ -32,7 +32,8 @@ def dict_factory(cursor, row):
   
   for key, value in zip(fields, row):
     dictionary = {key: value}
-    print("dictionary: ", dictionary)
+  
+  print("dictionary: ", dictionary)
   
   return dictionary
 
@@ -71,6 +72,7 @@ data_path = "../data.json"
 @app.get("/")
 def get_memo_data():
   con = sqlite3.connect("memoapp.db")
+  con.row_factory = dict_factory
   cur = con.cursor()
   cur.execute("SELECT * FROM memo_data")
   memo_data = cur.fetchall()
