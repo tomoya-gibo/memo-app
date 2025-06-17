@@ -121,10 +121,11 @@ def post_memo_data(data_id: int, edit_data: EditData):
 def post_new_data(new_data: NewData):
   print("new_dataの型:", type(new_data))
   print("new_dataはdictか？:", type(new_data) is dict)
+  print("new_dataの中身:", new_data)
   
   con = sqlite3.connect("memoapp.db")
   cur = con.cursor()
-  cur.execute("INSERT INTO memo_data VALUES(?, ?, ?, ?)", new_data)
+  # cur.execute("INSERT INTO memo_data VALUES(?, ?, ?, ?)", tuple(new_data.values()))
   con.commit()
   con.close()
   
