@@ -93,7 +93,7 @@ def get_memo_data():
   for data in memo_data:
     title = data.get("title")
     if not title:
-      data.update(initial_data)
+      data["title"] = initial_data["title"]
   return memo_data
 
 # /detailで対象のデータを取得する
@@ -113,6 +113,9 @@ def get_detail_data(data_id: int):
 
   con.commit()
   con.close()
+
+  if not detail_data.get("title"):
+    detail_data["title"] = initial_data["title"]
 
   return detail_data
 
