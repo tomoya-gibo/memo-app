@@ -95,8 +95,15 @@ def get_memo_data():
 @app.get("/detail/{data_id}")
 def get_detail_data(data_id: int):
   print("data_id:", data_id)
-  with open(data_path) as f:
-    memo_data = json.load(f)
+
+  con = sqlite3.connect("memoapp.db")
+  con.row_factory = dict_factory
+  cur = con.cursor()
+  cur.execute("SELECT * FROM memo_data")
+  memo_data = cur.fetchall()
+  print("memo_data:", memo_data)
+  con.commit()
+  con.close()
 
   for data in memo_data:
     id = data.get("id")
