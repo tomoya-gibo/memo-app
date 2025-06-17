@@ -95,11 +95,12 @@ def get_memo_data():
 @app.get("/detail/{data_id}")
 def get_detail_data(data_id: int):
   print("data_id:", data_id)
+  print("data_idの型:", type(data_id))
 
   con = sqlite3.connect("memoapp.db")
   con.row_factory = dict_factory
   cur = con.cursor()
-  cur.execute("SELECT * FROM memo_data")
+  cur.execute("SELECT * FROM memo_data WHERE id=?", (data_id,))
   memo_data = cur.fetchall()
   print("memo_data:", memo_data)
   con.commit()
