@@ -77,13 +77,13 @@ create_table()
 
 data_path = "../data.json"
 
-# memo_dataのすべての要素を取得する
+# memo_dataのタイトルとidを取得する
 @app.get("/")
 def get_memo_data():
   con = sqlite3.connect("memoapp.db")
   con.row_factory = dict_factory
   cur = con.cursor()
-  cur.execute("SELECT * FROM memo_data")
+  cur.execute("SELECT title, id FROM memo_data")
   memo_data = cur.fetchall()
   print(memo_data)
 
