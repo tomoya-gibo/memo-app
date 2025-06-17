@@ -29,9 +29,13 @@ def dict_factory(cursor, row):
     fields.append(column[0])
 
   print("fieldsの中身: ", fields)
+  print("rowの中身:", row)
   
+  dictionary = {}
   for key, value in zip(fields, row):
-    dictionary = {key: value}
+    print("key:", key)
+    print("value:", value)
+    dictionary[key] = value
   
   print("dictionary: ", dictionary)
   
