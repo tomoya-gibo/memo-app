@@ -122,23 +122,10 @@ def post_new_data(new_data: NewData):
   print("new_dataの型:", type(new_data))
   print("new_dataはdictか？:", type(new_data) is dict)
   print("new_dataの中身:", new_data)
-  
+
   con = sqlite3.connect("memoapp.db")
   cur = con.cursor()
-  # cur.execute("INSERT INTO memo_data VALUES(?, ?, ?, ?)", tuple(new_data.values()))
+  cur.execute("INSERT INTO memo_data VALUES(?, ?, ?, ?)", 
+              (new_data.title, new_data.body, new_data.references, new_data.id))
   con.commit()
   con.close()
-  
-  """with open(data_path) as f:
-    memo_data = json.load(f)
-
-  # new_dataをdict型に変換し、memo_dataの末尾に追加する
-  data = {}
-  data.update(new_data)
-  print("data:", data)
-  memo_data.append(data)
-  print("memo_data: ", memo_data)
-  
-  with open(data_path, "w") as f:
-    json.dump(memo_data, f, ensure_ascii=False, indent=2)
-    print(memo_data)"""
