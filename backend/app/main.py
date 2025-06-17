@@ -35,6 +35,11 @@ def dict_factory(cursor, row):
   for key, value in zip(fields, row):
     print("key:", key)
     print("value:", value)
+
+    # key名をDBのreferences_listから、フロントエンドで利用しているreferencesに変更する
+    if key == "references_list":
+      key = "references"
+    
     dictionary[key] = value
   
   print("dictionary: ", dictionary)
@@ -100,9 +105,12 @@ def get_detail_data(data_id: int):
   con = sqlite3.connect("memoapp.db")
   con.row_factory = dict_factory
   cur = con.cursor()
+  
+  # data_idはタプルとして渡す
   cur.execute("SELECT * FROM memo_data WHERE id=?", (data_id,))
   detail_data = cur.fetchone()
   print("detail_data:", detail_data)
+
   con.commit()
   con.close()
 
