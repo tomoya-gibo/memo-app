@@ -120,18 +120,14 @@ def get_detail_data(data_id: int):
 @app.post("/edit/{data_id}")
 def post_memo_data(data_id: int, edit_data: EditData):
   print("edit_dataの型:", type(edit_data))
-  with open(data_path) as f:
-    memo_data = json.load(f)
-  
-  for data in memo_data:
-    id = data.get("id")
-    if id == data_id:
-      data.update(edit_data)
-      print("POST後のデータ", data)
-      with open(data_path, "w") as f:
-        json.dump(memo_data, f, ensure_ascii=False, indent=2)
-        print(memo_data)    
-    
+
+  con = sqlite3.connect("memoapp.db")
+  cur = con.cursor()
+  cur.execute("UPDATE memo_data SET title=?, body=?, references_list=? WHERE id=?",
+              (edit_data.title, edit_data.body, edit_data.references, data_id))
+  con.commit()
+  con.close()
+
 # /newでメモを新規に作成して保存する
 @app.post("/new")
 def post_new_data(new_data: NewData):
